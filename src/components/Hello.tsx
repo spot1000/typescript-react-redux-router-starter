@@ -1,30 +1,33 @@
+// This page is taken directly from https://github.com/Microsoft/TypeScript-React-Starter
+
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
+
+import '../App.css';
 
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
-  onChangeName?: () => void;
 }
 
-const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement, onChangeName }: Props) => {
+const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) => {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D');
   }
 
   return (
-    <div className="hello">
+    <div className="App">
       <div className="greeting">
         Hello {name + getExclamationMarks(enthusiasmLevel)}
       </div>
       <div>
 
-        <Button variant="contained" color="primary" onClick={onDecrement}>-</Button>
-        <Button variant="contained" color="primary" onClick={onIncrement}>+</Button>
-        <Button variant="contained" color="primary" onClick={onChangeName}>{name}</Button>
+        <button onClick={onDecrement}>-</button>
+        <button onClick={onIncrement}>+</button>
       </div>
+      <Link to='/'>Back</Link>
     </div>
   );
 }

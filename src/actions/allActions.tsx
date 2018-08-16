@@ -1,6 +1,6 @@
-
+// Import all different action sets
 import { EnthusiasmAction } from './enthusiasmActions';
-import { characterSheetActions } from './characterSheetActions';
+import { madLibActions } from './madLibActions';
 
-
-export type AllActions = EnthusiasmAction | characterSheetActions;
+// Creates a single type for all your actions which will be used for the Root Reducer
+export type AllActions = madLibActions | EnthusiasmAction;

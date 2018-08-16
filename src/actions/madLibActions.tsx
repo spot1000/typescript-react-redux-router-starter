@@ -9,7 +9,11 @@ export interface UpdateFormField {
     }
 }
 
-export type characterSheetActions = UpdateFormField;
+export interface ClearForm {
+    type: constants.CLEAR_FORM;
+}
+
+export type madLibActions = UpdateFormField | ClearForm;
 
 export function UpdateFormField(fieldName:string, fieldValue:string): UpdateFormField {
     return {
@@ -18,5 +22,11 @@ export function UpdateFormField(fieldName:string, fieldValue:string): UpdateForm
             fieldName,
             fieldValue
         }
+    };
+}
+
+export function ClearForm(): ClearForm {
+    return {
+        type: constants.CLEAR_FORM
     };
 }

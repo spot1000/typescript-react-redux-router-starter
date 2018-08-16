@@ -1,4 +1,4 @@
-
+// This file is taken directly from https://github.com/Microsoft/TypeScript-React-Starter
 import * as constants from '../constants';
 
 export interface IncrementEnthusiasm {
@@ -9,11 +9,7 @@ export interface DecrementEnthusiasm {
     type: constants.DECREMENT_ENTHUSIASM;
 }
 
-export interface ChangeName {
-    type: constants.CHANGE_NAME;
-}
-
-export type EnthusiasmAction = IncrementEnthusiasm | DecrementEnthusiasm | ChangeName;
+export type EnthusiasmAction = IncrementEnthusiasm | DecrementEnthusiasm;
 
 export function incrementEnthusiasm(): IncrementEnthusiasm {
     return {
@@ -24,11 +20,5 @@ export function incrementEnthusiasm(): IncrementEnthusiasm {
 export function decrementEnthusiasm(): DecrementEnthusiasm {
     return {
         type: constants.DECREMENT_ENTHUSIASM
-    };
-}
-
-export function changeName(): ChangeName {
-    return {
-        type: constants.CHANGE_NAME
     };
 }
