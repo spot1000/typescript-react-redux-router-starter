@@ -1,37 +1,41 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
+import { madLibState } from '../types'
 
 import '../App.css';
 
 
-export interface Props {
-    name: string,
-    verb: string,
-    noun: string,
-    age: string,
+export interface Props extends madLibState {
     onUpdateValue: (field:string, value:any) => void,
     clearForm: () => void
        
 }
 
-const MadLib = ({name, verb, noun, age, onUpdateValue, clearForm}:Props) => {
-    return (
-        <div className='App'>
-            <div>
-                <input placeholder='Name' value={name} onChange={(e) => onUpdateValue('name', e.target.value)}/>
-                <input placeholder='Age' value={age} onChange={(e) => onUpdateValue('age', e.target.value)}/>
-                <input placeholder='Verb' value={verb} onChange={(e) => onUpdateValue('verb', e.target.value)}/>
-                <input placeholder='Noun' value={noun} onChange={(e) => onUpdateValue('noun', e.target.value)}/>
-            </div>
-            <div>
-                <p>Hi, my name is {name}, I'm {age} and I {verb} {noun}</p>
-            </div>
-            <div>
-                <button onClick = {clearForm}>reset</button>
-            </div>
-            <Link to='/'>Back</Link>
-        </div>
-    );
+class MadLib extends React.Component<Props, madLibState>{
+    onChange = (e:any) => {
+        this.props.onUpdateValue(e.target.dataset.name, e.target.value)
+    }
+
+    render() {
+        const {name, verb, noun, age, clearForm} = this.props;
+        return (
+            <div className='App'>
+             <div>
+                 <input placeholder='Name' data-name="name" value={name} onChange={this.onChange}/>
+                 <input placeholder='Age' data-name="age" value={age} onChange={this.onChange}/>
+                 <input placeholder='Verb' data-name="verb" value={verb} onChange={this.onChange}/>
+                 <input placeholder='Noun' data-name="noun" value={noun} onChange={this.onChange}/>
+             </div>
+             <div>
+                 <p>Hi, my name is {name}, I'm {age} and I {verb} {noun}</p>
+             </div>
+             <div>
+                 <button onClick = {clearForm}>reset</button>
+             </div>
+             <Link to='/'>Back</Link>
+         </div>
+        )
+    }
 }
 
 export default MadLib;
